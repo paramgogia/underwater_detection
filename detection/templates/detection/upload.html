@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underwater Object Detection</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;  /* Main color */
+            margin-bottom: 30px;  /* Space below the header */
+            font-size: 2.5rem;  /* Increased font size */
+            text-align: center;  /* Center the text */
+            font-weight: bold;  /* Bold font for emphasis */
+            letter-spacing: 1px;  /* Increased letter spacing */
+            text-shadow: 2px 2px 5px rgba(0, 123, 255, 0.3);  /* Soft shadow effect */
+            transition: color 0.3s, transform 0.3s;  /* Smooth transition */
+        }
+        
+        h1:hover {
+            color: #0056b3;  /* Darker shade on hover */
+            transform: translateY(-2px);  /* Slight lift effect on hover */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .image-container {
+            margin-top: 20px;
+            position: relative;
+        }
+        img {
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        img:hover {
+            transform: scale(1.02);
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">Upload Underwater Image</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Upload</button>
+        </div>
+    </form>
+
+    {% if annotated_image_url %}
+        <h2 class="text-center mt-5">Annotated Image:</h2>
+        <div class="image-container text-center">
+            <img src="{{ annotated_image_url }}" alt="Annotated Image" class="img-fluid">
+        </div>
+    {% endif %}
+</div>
+
+<footer>
+    <p>© 2024 Underwater Object Detection by Param Gogia. All rights reserved.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
